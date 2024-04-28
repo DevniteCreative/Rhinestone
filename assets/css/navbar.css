@@ -1,0 +1,69 @@
+/* Keyframes should be defined before they're used */
+@keyframes slideBar {
+    from { height: 0; }
+    to { height: 5px; }
+  }
+
+  @keyframes slideOutBar {
+    from { height: 5px; }
+    to { height: 0; }
+  }
+
+  /* Custom Navbar Styles */
+  nav {
+    background-color: rgb(39, 39, 39);
+    padding: 2px;
+    display: flex;
+    position: relative;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 17px;
+    margin-right: 10px;
+    margin-bottom: -2px;
+    position: relative;
+    font-size: 11px;
+    letter-spacing: 1.05px;
+    line-height: 16px;
+  }
+
+  nav a:hover {
+    color: #a60303;
+  }
+
+  nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #a60303;
+    transition: height 0.3s;
+  }
+
+  nav a.active::after {
+    height: 5px;
+    animation: slideBar 0.3s forwards;
+  }
+
+  nav a:not(.active):hover::after {
+    height: 5px;
+    animation: slideBar 0.3s forwards;
+  }
+
+  nav a:not(:hover):not(.active)::after {
+    animation: slideOutBar 0.3s forwards;
+  }
+        text {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 40px;
+    text-transform: capitalize;
+padding: 6px;
+    }

@@ -1,0 +1,21 @@
+<div class="wow animated fadeIn" data-wow-delay=".15s">
+  <a href="{{ uedn_url }}" class="uedn card text-themed" {%- if external and site.open_new_tab -%} target="_blank" {%- endif -%}>
+    {%- if uedn_img -%}
+    <img id="{{ uedn_id }}-img" class="card-img-top" src="{{ uedn_img }}" alt="{{ uedn_name }}" />
+    {%- endif -%}
+    <div class="card-body">
+      <h5 id="{{ uedn_id }}-name" class="card-title">
+          {%- if uedn_type == "remote" -%}
+          <i class="fab fa-github" data-toggle="tooltip" data-placement="bottom" data-delay="250" title="GitHub Repository"></i> |&nbsp;
+          {%- endif -%}
+        {{ uedn_name }}
+      </h5>
+      <p id="{{ uedn_id }}-desc" class="card-text">{{ uedn_desc }}</p>
+      <p id="{{ uedn_id }}-tools" class="card-text">
+        {%- for tool in uedn_tools -%}
+        <span class="badge badge-pill text-primary border border-primary ml-1">{{ tool }}</span>
+        {%- endfor -%}
+      </p>
+    </div>
+  </a>
+</div>

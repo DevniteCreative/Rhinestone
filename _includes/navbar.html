@@ -1,0 +1,75 @@
+<nav>
+
+  <a class="text" href="/">DevGames</a>
+
+  <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+</button-->
+<div class="dropdown">
+<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+      Modes
+    </button>
+    <div class="dropdown-menu">
+      <!-- Hier kannst du Links oder Inhalte für das Dropdown-Menü hinzufügen -->
+      <a class="dropdown-item" href="/battle-royale/">Battle Royale</a>
+      <a class="dropdown-item" href="/create/">Creative & UEDN</a>
+      <a class="dropdown-item" href="/protect-the-city/">Protect The City</a>
+    </div></div>
+  <!--div class="collapse navbar-collapse" id="navbarNavAltMarkup"-->
+    <!-- div class="navbar-nav ml-auto" -->
+
+      {%- assign html_pages = site.html_pages | sort: 'weight' -%}
+      {%- assign filtered_pages = "" | split: "" -%}
+
+      {%- for html_page in html_pages -%} 
+
+        {%- assign exclude = false -%}
+
+        {%- for exclude_path in site.nav_exclude -%}
+
+          {%- if exclude_path == html_page.path -%}
+            {%- assign exclude = true -%}
+            {%- break -%}
+          {%- elsif exclude_path contains '**' -%}
+            {%- assign match = exclude_path | remove: '**' -%}
+            {%- if html_page.path contains match -%}
+              {%- assign exclude = true -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+
+        {%- endfor -%}
+
+        {%- unless exclude -%}
+          {%- assign filtered_pages = filtered_pages | push: html_page -%}
+        {%- endunless -%}
+
+      {%- endfor -%}
+
+      {% for html_page in filtered_pages %}  
+
+        {%- if page.url contains html_page.url -%}
+          {%- assign active_status = "active" -%}
+        {%- else -%}
+          {%- assign active_status = "" -%}
+        {%- endif -%}
+
+        {%- if html_page.external_url -%}
+          {%- assign url = html_page.external_url -%}
+        {%- else -%}
+          {%- assign url = html_page.url | relative_url -%}
+        {%- endif -%}
+
+        <a class="{{ active_status }}" href="{{ url }}" {%- if html_page.external_url and site.open_new_tab -%} {%- endif -%} >{{ html_page.title }}</a>
+
+      {% endfor %}
+<div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+      Legal
+    </button>
+    <div class="dropdown-menu">
+      <!-- Hier kannst du Links oder Inhalte für das Dropdown-Menü hinzufügen -->
+      <a class="dropdown-item" href="/privacy-policy/">Privacy Policy</a>
+      <a class="dropdown-item" href="/terms-of-use/">Terms Of Use (TOS)</a>
+    </div></div>
+</nav>

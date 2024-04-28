@@ -1,0 +1,26 @@
+
+<div class="card-columns m-3 mt-5">
+
+  <!-- Local docs -->
+  {% for uedn in site.uedn %}
+
+    {%- assign uedn_type  = "local" -%}
+    {%- assign uedn_id    = uedn.name | slugify -%}
+    {%- assign uedn_img   = uedn.image -%}
+    {%- assign uedn_name  = uedn.name -%}
+    {%- assign uedn_desc  = uedn.description -%}
+    {%- assign uedn_tools = uedn.tools -%}
+
+    {%- if uedn.external_url -%}
+      {%- assign uedn_url = uedn.external_url -%}
+      {%- assign external    = true -%}
+    {%- else -%}
+      {%- assign uedn_url = uedn.url | relative_url -%}
+      {%- assign external    = false -%}
+    {%- endif -%}
+
+    {% include uedn/uedn-card.html %}
+
+  {% endfor %}
+
+</div>

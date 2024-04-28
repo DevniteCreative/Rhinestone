@@ -1,0 +1,35 @@
+<nav>
+  <a class="text" href="/">Documentation.Testing</a>
+  {%- for html_page in filtered_pages -%}
+    {%- if page.url contains html_page.url -%}
+      {%- assign active_status = "active" -%}
+    {%- else -%}
+      {%- assign active_status = "" -%}
+    {%- endif -%}
+    {%- if html_page.external_url -%}
+      {%- assign url = html_page.external_url -%}
+    {%- else -%}
+      {%- assign url = html_page.url | relative_url -%}
+    {%- endif -%}
+    {%- if html_page.url contains '/' -%}
+      <div class="dropdown">
+        <button class="btn dropdown-toggle {{ active_status }}" type="button" data-toggle="dropdown" aria-expanded="false">
+          {{ html_page.title }}
+        </button>
+        <div class="dropdown-menu">
+          <!-- Hier können Sie Links zu den Unterseiten hinzufügen -->
+        </div>
+      </div>
+    {%- else -%}
+      <a class="{{ active_status }}" href="{{ url }}" {%- if html_page.external_url and site.open_new_tab -%} {%- endif -%} >{{ html_page.title }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+  <div class="dropdown">
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+      Legal
+    </button>
+    <div class="dropdown-menu">
+      <!-- Hier kannst du Links oder Inhalte für das Dropdown-Menü hinzufügen -->
+    </div>
+  </div>
+</nav>

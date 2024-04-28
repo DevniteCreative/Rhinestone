@@ -9,14 +9,16 @@
 <html lang="en" class="h-100">
 
 {% include head.html %}
-{% include navbar.html %}
-<body class="no-animation h-100 d-flex flex-column">
 
-  <main class="flex-shrink-0 container mt-5 ">
+<body>
+
+    {% include navbar.html %}
+
     {{ content }}
-  </main>
+  <main class="flex-shrink-0 container mt-5 ">
   {% include footer.html %}
-
+  </main>
+    
   {% include analytics.html %}
   {% include scripts.html %}
 <script>

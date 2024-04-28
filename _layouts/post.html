@@ -27,9 +27,8 @@ layout: page
   {%- endif -%}
 
 </p>
-<center>
-  {{ content }}
-</center>
+{% include authorblog.html %}
+{{ content }}
 
 {% if page.comments %}
 <div class="pt-5">
